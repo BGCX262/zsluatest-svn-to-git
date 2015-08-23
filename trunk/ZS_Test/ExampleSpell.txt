@@ -1,0 +1,20 @@
+﻿!ZS_SCRIPT(1.0)										// Tells the script engine the used script version
+
+// Comment line
+#include Entity										// Includes other script files
+#include ExampleProtoSpell
+
+class ExampleSpell : ExampleProtoSpell
+{
+	replace Elemental SpellElemental = Elemental.Fire		// Replaces a data field value with something else
+	replace int SpellDamage += 40					// Modifies SpellDamage data field by adding 40 to it
+	bool testbool = false							// Adds data field that does not exist in superclass
+
+	replace event OnHit(Entiety e)					// Replaces event trigger OnHit(Entiety) with a new trigger
+	{
+		if (!testbool)
+		{
+			super(e)								// Calls ExampleProtoSpell::OnHit(Entiety) with e
+		}
+	}
+}

@@ -1,0 +1,98 @@
+﻿!ZS_SCRIPT(1.0)
+
+class Elemental
+{
+	String Name = "NONE"
+	Set<key Elemental, float> [] DamageMultipliers = 0
+
+
+	// Must be there for the Array.Get to be usable on Set group
+	bool operator== (Elemental a)
+	{
+		return this.Name == a.Name
+	}
+}
+
+Elemental.Fire
+{
+	Name = "Fire"
+	DamageMultipliers =
+	{
+		<Fire, 0.0>
+		<Ice, 3.0>
+		<Water, 0.4>
+		<Thunder, 1.0>
+		<Earth, 0.7>
+		<Metal, 0.2>
+	}
+}
+
+Elemental.Ice
+{
+	Name = "Ice"
+	DamageMultipliers =
+	{
+		<Fire, 1.0 / Fire.DamageMultipliers.Get(self)>
+		<Ice, 1.0>
+		<Water, 1.5>
+		<Thunder, 0.6>
+		<Earth, 0.9>
+		<Metal, 0.4>
+	}
+}
+
+Elemental.Water
+{
+	Name = "Water"
+	DamageMultipliers =
+	{
+		<Fire, 1.0 / Fire.DamageMultipliers.Get(self)>
+		<Ice, 1.0 / Ice.DamageMultipliers.Get(self)>
+		<Water, 1.0>
+		<Thunder, 0.2>
+		<Earth, 0.7>
+		<Metal, 1.3>
+	}
+}
+
+Elemental.Thunder
+{
+	Name = "Thunder"
+	DamageMultipliers =
+	{
+		<Fire, 1.0 / Fire.DamageMultipliers.Get(self)>
+		<Ice, 1.0 / Ice.DamageMultipliers.Get(self)>
+		<Water, 1.0 / Water.DamageMultipliers.Get(self)>
+		<Thunder, 1.0>
+		<Earth, 0.5>
+		<Metal, 1.8>
+	}
+}
+
+Elemental.Earth
+{
+	Name = "Earth"
+	DamageMultipliers =
+	{
+		<Fire, 1.0 / Fire.DamageMultipliers.Get(self)>
+		<Ice, 1.0 / Ice.DamageMultipliers.Get(self)>
+		<Water, 1.0 / Water.DamageMultipliers.Get(self)>
+		<Thunder, 1.0 / Thunder.DamageMultipliers.Get(self)>
+		<Earth, 1.0>
+		<Metal, 1.2>
+	}
+}
+
+Elemental.Metal
+{
+	Name = "Metal"
+	DamageMultipliers =
+	{
+		<Fire, 1.0 / Fire.DamageMultipliers.Get(self)>
+		<Ice, 1.0 / Ice.DamageMultipliers.Get(self)>
+		<Water, 1.0 / Water.DamageMultipliers.Get(self)>
+		<Thunder, 1.0 / Thunder.DamageMultipliers.Get(self)>
+		<Earth, 1.0 / Earth.DamageMultipliers.Get(self)>
+		<Metal, 1.0>
+	}
+}
